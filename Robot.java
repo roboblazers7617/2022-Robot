@@ -114,15 +114,32 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Speed:", speedDecreaser);
     if(controller.getRightBumper()){
      speedDecreaser = 0.5;
+     climbFrontLeftMotor.set(-.25);
+     climbFrontRightMotor.set(-.25);
+     climbBackLeftMotor.set(-.25);
+     climbBackRightMotor.set(-.25);
 
     }
-    if(controller.getLeftBumper()){
+    else if(controller.getLeftBumper()){
       speedDecreaser = 1;
+      climbFrontLeftMotor.set(.25);
+     climbFrontRightMotor.set(.25);
+      climbBackLeftMotor.set(.25);
+      climbBackRightMotor.set(.25);
  
      }
+     else{
+      climbFrontLeftMotor.set(0);
+     climbFrontRightMotor.set(0);
+      climbBackLeftMotor.set(0);
+      climbBackRightMotor.set(0);
+     }
      
-     if(controller.getLeftTriggerAxis() > 0.5 && controller.getRightTriggerAxis() >0.5){
-
+    /* if(controller.getLeftTriggerAxis() > 0.5 && controller.getRightTriggerAxis() >0.5){
+      climbFrontLeftMotor.set(0);
+      climbFrontRightMotor.set(0);
+      climbBackLeftMotor.set(0);
+      climbBackRightMotor.set(0);
      }
      else if(controller.getRightTriggerAxis() >0.5){
        climbFrontLeftMotor.set(-0.25*(controller.getRightTriggerAxis()-.5));
@@ -134,7 +151,14 @@ public class Robot extends TimedRobot {
       climbFrontLeftMotor.set(0.25*(controller.getRightTriggerAxis()-.5));
       climbFrontRightMotor.set(0.25*(controller.getRightTriggerAxis()-.5));
       climbBackLeftMotor.set(0.25*(controller.getRightTriggerAxis()-.5));
-      climbBackRightMotor.set(0.25*(controller.getRightTriggerAxis()-.5));    }
+      climbBackRightMotor.set(0.25*(controller.getRightTriggerAxis()-.5));  
+      }
+      else if(controller.getLeftTriggerAxis() < 0.5 && controller.getRightTriggerAxis() < 0.5){
+      climbFrontLeftMotor.set(0);
+      climbFrontRightMotor.set(0);
+      climbBackLeftMotor.set(0);
+      climbBackRightMotor.set(0);
+      }*/
     drive.driveCartesian(controller.getLeftY()*speedDecreaser, controller.getLeftX()*speedDecreaser, controller.getRightX()*speedDecreaser);
 
     /*if(Math.abs(controller.getLeftY())>.1)
